@@ -1,51 +1,71 @@
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landlord-Tenant Reviews</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Directory of Landlords and Tenants</title>
+    <style>
+        iframe {
+            display: none; /* Initially hide both forms */
+        }
+    </style>
 </head>
 <body>
     <h1>Directory of Landlords and Tenants</h1>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdUaiJwiW7YbZlNc7JDTMUnQuJ4UJWRGD15mlcGll9Qjg512Q/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdUaiJwiW7YbZlNc7JDTMUnQuJ4UJWRGD15mlcGll9Qjg512Q/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-
-
-
-
- 
-
-<h2>Search Reviews</h2>
-<form id="search-form">
-    <label for="type">Search Type:</label>
-    <select name="type" id="type">
+    
+    <p>Please select the type of review you'd like to submit:</p>
+    <select id="review-type">
+        <option value="">-- Select an option --</option>
         <option value="landlord">Landlord</option>
         <option value="tenant">Tenant</option>
     </select>
+    
+    <!-- Landlord Review Form -->
+    <iframe id="landlord-form" 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSciifqlJNDIh4EAq5xKuQMoFnXZVqYKoqsR_gxCYiYCtYHLEw/viewform?embedded=true" 
+            width="640" 
+            height="1425" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0">
+        Loading…
+    </iframe>
 
-    <div id="landlord-fields" style="display: none;">
-        <input type="text" name="postalCode" placeholder="Enter postal code" required>
-        <input type="text" name="unitNumber" placeholder="Enter unit number" required>
-    </div>
+    <!-- Tenant Review Form -->
+    <iframe id="tenant-form" 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSdUaiJwiW7YbZlNc7JDTMUnQuJ4UJWRGD15mlcGll9Qjg512Q/viewform?embedded=true" 
+            width="640" 
+            height="1000" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0">
+        Loading…
+    </iframe>
 
-    <div id="tenant-fields" style="display: none;">
-        <input type="text" name="idNumber" placeholder="Enter last 4 characters of ID" required>
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const reviewTypeSelect = document.getElementById('review-type');
+            const landlordForm = document.getElementById('landlord-form');
+            const tenantForm = document.getElementById('tenant-form');
 
-    <button type="submit">Search</button>
-</form>
+            // Event listener for dropdown changes
+            reviewTypeSelect.addEventListener('change', () => {
+                const selectedType = reviewTypeSelect.value;
 
-<div id="results-section">
-    <h3>Results</h3>
-    <div id="results"></div>
-</div>
-
-    <div id="results-section">
-    <h3>Results</h3>
-    <div id="results"></div>
-    </div>
-    <script src="js/script.js"></script>
+                // Show the appropriate form based on the selection
+                if (selectedType === 'landlord') {
+                    landlordForm.style.display = 'block';
+                    tenantForm.style.display = 'none';
+                } else if (selectedType === 'tenant') {
+                    tenantForm.style.display = 'block';
+                    landlordForm.style.display = 'none';
+                } else {
+                    // If no valid selection, hide both forms
+                    landlordForm.style.display = 'none';
+                    tenantForm.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
