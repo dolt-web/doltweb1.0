@@ -11,9 +11,44 @@
     <h1>Directory of Landlords and Tenants</h1>
     <p>Give reviews</p>
     <div id="form-section">
-        <!-- Placeholder for form or UI content -->
+        <h2>Submit a Review</h2>
+          <form id="review-form">
+              <select name="type" id="type">
+                  <option value="landlord">Landlord</option>
+                  <option value="tenant">Tenant</option>
+              </select>
+              <input type="text" name="review" placeholder="Enter your review" required>
+              <button type="submit">Submit</button>
+          </form>
+
+<h2>Search Reviews</h2>
+<form id="search-form">
+    <label for="type">Search Type:</label>
+    <select name="type" id="type">
+        <option value="landlord">Landlord</option>
+        <option value="tenant">Tenant</option>
+    </select>
+
+    <div id="landlord-fields" style="display: none;">
+        <input type="text" name="postalCode" placeholder="Enter postal code" required>
+        <input type="text" name="unitNumber" placeholder="Enter unit number" required>
     </div>
-    <p>Search for reviews</p>
+
+    <div id="tenant-fields" style="display: none;">
+        <input type="text" name="idNumber" placeholder="Enter last 4 characters of ID" required>
+    </div>
+
+    <button type="submit">Search</button>
+</form>
+
+<div id="results-section">
+    <h3>Results</h3>
+    <div id="results"></div>
+</div>
+
+
+    </div>
+    <p>Results</p>
     <div id="results-section">
         <!-- Placeholder for results -->
     </div>
